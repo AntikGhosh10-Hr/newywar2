@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year My Love ❤️</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+  font-family: 'Georgia', cursive;
+  overflow:hidden;
+}
+
+.container{
+  text-align:center;
+  color:white;
+  padding:30px;
+}
+
+h1{
+  font-size:3rem;
+  text-shadow:0 0 20px rgba(255,255,255,0.8);
+}
+
+h2{
+  margin-bottom:30px;
+}
+
+button{
+  padding:16px 40px;
+  border:none;
+  border-radius:50px;
+  background: linear-gradient(45deg,#ff416c,#ff4b2b);
+  color:white;
+  font-size:1.1rem;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+
+button:hover{
+  transform: scale(1.1);
+}
+
+#message p{
+  opacity:0;
+  font-size:1.3rem;
+  margin:12px 0;
+  transition: opacity 1.2s ease;
+}
+
+/* Floating hearts */
+.heart{
+  position:absolute;
+  font-size:20px;
+  color:#ff4d6d;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float{
+  from{ transform: translateY(100vh); opacity:1; }
+  to{ transform: translateY(-10vh); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>🎆 Happy New Year 2026 🎆</h1>
+  <h2> My Beautiful  Diya (Puchku)   😘❤️</h2>
+
+  <button onclick="openHeart()">Open My Heart 💖</button>
+
+  <div id="message">
+    <p>My Love ❤️</p>
+    <p>With you, every moment feels magical ✨</p>
+    <p>Every year feels special because of you 💖</p>
+    <p>You are my favorite feeling</p>
+    <p>My Best Gift from God</p>
+    <p>And my biggest blessing 💞</p>
+    <p>I promise to love you more with every sunrise 🌅</p>
+    <p>I love you to the Moon 🌙 and Back 💕</p>
+    <p> The Best Felling is We have Spent a Year already..  😌😌</p>
+  </div>
+</div>
+
+<audio id="song" loop>
+  <source src="dhun.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function openHeart(){
+  const lines = document.querySelectorAll("#message p");
+  const music = document.getElementById("song");
+
+  // play music
+  music.volume = 0;
+  music.play();
+
+  let vol = 0;
+  let fade = setInterval(()=>{
+    if(vol < 1){
+      vol += 0.02;
+      music.volume = vol;
+    } else clearInterval(fade);
+  },100);
+
+  // show lines one by one
+  lines.forEach((line, index)=>{
+    setTimeout(()=>{
+      line.style.opacity = "1";
+    }, index * 1200);
+  });
+
+  // floating hearts
+  setInterval(createHeart,300);
+}
+
+function createHeart(){
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.fontSize = Math.random()*20 + 15 + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),6000);
+}
+</script>
+
+</body>
+</html>
